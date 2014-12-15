@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=D:\Audio-Controller\EvenOneMoreAudCtrl\make_sin_sig.ncd
+OUTFILE=D:\Audio-Controller\EvenOneMoreAudCtrl\make_sin_sig.bit
+FAMILY=Spartan3A and Spartan3AN
+PART=xc3s700an-4fgg484
+WORKINGDIR=D:\Audio-Controller\EvenOneMoreAudCtrl
+LICENSE=WebPack
+USER_INFO=209511393_0_0_035

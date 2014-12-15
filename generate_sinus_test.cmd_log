@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/generate_sinus_test.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/generate_sinus_test.syr" 

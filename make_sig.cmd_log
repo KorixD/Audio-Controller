@@ -1,0 +1,4 @@
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sig.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sig.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s700an-fgg484-4 make_sig.ngc make_sig.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o make_sig_map.ncd make_sig.ngd make_sig.pcf 
+par -w -intstyle ise -ol high -t 1 make_sig_map.ncd make_sig.ncd make_sig.pcf 

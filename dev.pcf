@@ -1,0 +1,10 @@
+//! **************************************************************************
+// Written by: Map O.87xd on Sat Jun 23 10:16:45 2012
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "clk" LOCATE = SITE "E12" LEVEL 1;
+COMP "aud_sig" LOCATE = SITE "V10" LEVEL 1;
+COMP "ARESETn" LOCATE = SITE "T9" LEVEL 1;
+SCHEMATIC END;
+

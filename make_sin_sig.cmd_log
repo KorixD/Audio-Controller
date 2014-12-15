@@ -1,0 +1,28 @@
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sin_sig.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sin_sig.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc make_sin_sig_constr.ucf -p xc3s700an-fgg484-4 make_sin_sig.ngc make_sin_sig.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o make_sin_sig_map.ncd make_sin_sig.ngd make_sin_sig.pcf 
+par -w -intstyle ise -ol high -t 1 make_sin_sig_map.ncd make_sin_sig.ncd make_sin_sig.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml make_sin_sig.twx make_sin_sig.ncd -o make_sin_sig.twr make_sin_sig.pcf -ucf make_sin_sig_constr.ucf 
+bitgen -intstyle ise -f make_sin_sig.ut make_sin_sig.ncd 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc make_sin_sig_constr.ucf -p xc3s700an-fgg484-4 make_sin_sig.ngc make_sin_sig.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o make_sin_sig_map.ncd make_sin_sig.ngd make_sin_sig.pcf 
+par -w -intstyle ise -ol high -t 1 make_sin_sig_map.ncd make_sin_sig.ncd make_sin_sig.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml make_sin_sig.twx make_sin_sig.ncd -o make_sin_sig.twr make_sin_sig.pcf -ucf make_sin_sig_constr.ucf 
+bitgen -intstyle ise -f make_sin_sig.ut make_sin_sig.ncd 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc make_sin_sig_constr.ucf -p xc3s700an-fgg484-4 make_sin_sig.ngc make_sin_sig.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o make_sin_sig_map.ncd make_sin_sig.ngd make_sin_sig.pcf 
+par -w -intstyle ise -ol high -t 1 make_sin_sig_map.ncd make_sin_sig.ncd make_sin_sig.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml make_sin_sig.twx make_sin_sig.ncd -o make_sin_sig.twr make_sin_sig.pcf -ucf make_sin_sig_constr.ucf 
+bitgen -intstyle ise -f make_sin_sig.ut make_sin_sig.ncd 
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sin_sig.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sin_sig.syr" 
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sin_sig.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sin_sig.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc make_sin_sig_constr.ucf -p xc3s700an-fgg484-4 make_sin_sig.ngc make_sin_sig.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o make_sin_sig_map.ncd make_sin_sig.ngd make_sin_sig.pcf 
+par -w -intstyle ise -ol high -t 1 make_sin_sig_map.ncd make_sin_sig.ncd make_sin_sig.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml make_sin_sig.twx make_sin_sig.ncd -o make_sin_sig.twr make_sin_sig.pcf -ucf make_sin_sig_constr.ucf 
+bitgen -intstyle ise -f make_sin_sig.ut make_sin_sig.ncd 
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sin_sig.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sin_sig.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc make_sin_sig_constr.ucf -p xc3s700an-fgg484-4 make_sin_sig.ngc make_sin_sig.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o make_sin_sig_map.ncd make_sin_sig.ngd make_sin_sig.pcf 
+par -w -intstyle ise -ol high -t 1 make_sin_sig_map.ncd make_sin_sig.ncd make_sin_sig.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml make_sin_sig.twx make_sin_sig.ncd -o make_sin_sig.twr make_sin_sig.pcf -ucf make_sin_sig_constr.ucf 

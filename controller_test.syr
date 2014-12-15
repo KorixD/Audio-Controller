@@ -1,0 +1,1549 @@
+Release 13.4 - xst O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.73 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.74 secs
+ 
+--> Reading design: controller_test.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "controller_test.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "controller_test"
+Output Format                      : NGC
+Target Device                      : xc3s700an-4-fgg484
+
+---- Source Options
+Top Module Name                    : controller_test
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ipcore_dir/sinus.v" in library work
+Compiling verilog file "slave.v" in library work
+Module <sinus> compiled
+Compiling verilog file "make_sig.v" in library work
+Module <slave> compiled
+Compiling verilog file "ipcore_dir/mem.v" in library work
+Module <make_sig> compiled
+Compiling verilog file "generate_sinus.v" in library work
+Module <mem> compiled
+Compiling verilog file "controller.v" in library work
+Module <generate_sinus> compiled
+Compiling verilog file "controller_test.v" in library work
+Module <controller> compiled
+Module <controller_test> compiled
+No errors in compilation
+Analysis of file <"controller_test.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <controller_test> in library <work>.
+
+Analyzing hierarchy for module <controller> in library <work>.
+
+Analyzing hierarchy for module <slave> in library <work> with parameters.
+	READY = "00000000000000000000000000000001"
+	RESET = "00000000000000000000000000000000"
+	RESP = "00000000000000000000000000000011"
+	VALID = "00000000000000000000000000000010"
+
+Analyzing hierarchy for module <generate_sinus> in library <work> with parameters.
+	MAX = "0010000000000000"
+	MIN = "1110000000000000"
+
+Analyzing hierarchy for module <make_sig> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <controller_test>.
+Module <controller_test> is correct for synthesis.
+ 
+Analyzing module <controller> in library <work>.
+WARNING:Xst:2211 - "ipcore_dir/mem.v" line 67: Instantiating black box module <mem>.
+Module <controller> is correct for synthesis.
+ 
+Analyzing module <slave> in library <work>.
+	READY = 32'sb00000000000000000000000000000001
+	RESET = 32'sb00000000000000000000000000000000
+	RESP = 32'sb00000000000000000000000000000011
+	VALID = 32'sb00000000000000000000000000000010
+Module <slave> is correct for synthesis.
+ 
+Analyzing module <generate_sinus> in library <work>.
+	MAX = 16'b0010000000000000
+	MIN = 16'b1110000000000000
+WARNING:Xst:2211 - "ipcore_dir/sinus.v" line 39: Instantiating black box module <sinus>.
+Module <generate_sinus> is correct for synthesis.
+ 
+    Set user-defined property "SYN_BLACK_BOX =  1" for instance <sig> in unit <generate_sinus>.
+    Set user-defined property "SYN_NOPRUNE =  1" for instance <sig> in unit <generate_sinus>.
+    Set property "SYN_NOPRUNE = 1" for unit <sinus>.
+Analyzing module <make_sig> in library <work>.
+Module <make_sig> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <slave>.
+    Related source file is "slave.v".
+    Found 4-bit register for signal <addr>.
+    Found 1-bit register for signal <BVALID>.
+    Found 1-bit register for signal <WREADY>.
+    Found 1-bit register for signal <AWREADY>.
+    Found 7-bit register for signal <data>.
+    Found 2-bit register for signal <wstate>.
+    Summary:
+	inferred  16 D-type flip-flop(s).
+Unit <slave> synthesized.
+
+
+Synthesizing Unit <make_sig>.
+    Related source file is "make_sig.v".
+WARNING:Xst:647 - Input <sin<0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <sig>.
+    Found 14-bit up accumulator for signal <curr_length>.
+    Found 14-bit adder for signal <pos_length$addsub0001> created at line 35.
+    Found 13-bit adder carry out for signal <pos_length$addsub0002> created at line 33.
+    Found 14-bit comparator less for signal <sig$cmp_lt0000> created at line 41.
+    Summary:
+	inferred   1 Accumulator(s).
+	inferred   1 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+Unit <make_sig> synthesized.
+
+
+Synthesizing Unit <generate_sinus>.
+    Related source file is "generate_sinus.v".
+WARNING:Xst:647 - Input <freq<14:15>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 11-bit up accumulator for signal <clk14>.
+    Found 16-bit register for signal <phase>.
+    Found 16-bit adder for signal <phase$addsub0000> created at line 51.
+    Found 16-bit comparator greater for signal <phase$cmp_gt0000> created at line 52.
+    Found 14-bit register for signal <step>.
+    Found 11-bit comparator less for signal <step$cmp_lt0000> created at line 48.
+    Summary:
+	inferred   1 Accumulator(s).
+	inferred  30 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <generate_sinus> synthesized.
+
+
+Synthesizing Unit <controller>.
+    Related source file is "controller.v".
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_4>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_5>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_6>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_7>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 1-bit register for signal <BVALID>.
+    Found 1-bit register for signal <WREADY>.
+    Found 1-bit register for signal <AWREADY>.
+    Found 1-bit register for signal <res_signal>.
+    Found 4-bit register for signal <count>.
+    Found 4-bit adder for signal <count$mux0000>.
+    Found 14-bit register for signal <res>.
+    Found 17-bit adder carry out for signal <res$addsub0001> created at line 181.
+    Found 17-bit shifter logical right for signal <res$shift0001> created at line 181.
+    Found 16-bit register for signal <signal>.
+    Found 16-bit adder for signal <signal$addsub0000> created at line 190.
+    Found 17-bit comparator greatequal for signal <signal$cmp_ge0000> created at line 187.
+    Found 17-bit register for signal <temp>.
+    Found 17-bit subtractor for signal <temp$mux0000>.
+    Found 17-bit register for signal <temp_neg>.
+    Found 17-bit adder for signal <temp_neg$mux0000>.
+    Found 17-bit adder for signal <temp_neg$mux0001>.
+    Found 17-bit register for signal <temp_pos>.
+    Found 17-bit adder for signal <temp_pos$mux0000>.
+    Summary:
+	inferred  89 D-type flip-flop(s).
+	inferred   7 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+	inferred   1 Combinational logic shifter(s).
+Unit <controller> synthesized.
+
+
+Synthesizing Unit <controller_test>.
+    Related source file is "controller_test.v".
+WARNING:Xst:1780 - Signal <WVALID> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <WREADY> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <WDATA> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <BVALID> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <BREADY> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <AWVALID> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <AWREADY> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <AWADDR> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <ARESETn> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <clk10>.
+    Found 5-bit up counter for signal <count10>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+Unit <controller_test> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 17
+ 13-bit adder carry out                                : 1
+ 14-bit adder                                          : 1
+ 16-bit adder                                          : 9
+ 17-bit adder                                          : 3
+ 17-bit adder carry out                                : 1
+ 17-bit subtractor                                     : 1
+ 4-bit adder                                           : 1
+# Counters                                             : 1
+ 5-bit up counter                                      : 1
+# Accumulators                                         : 9
+ 11-bit up accumulator                                 : 8
+ 14-bit up accumulator                                 : 1
+# Registers                                            : 34
+ 1-bit register                                        : 9
+ 14-bit register                                       : 9
+ 16-bit register                                       : 9
+ 17-bit register                                       : 3
+ 2-bit register                                        : 1
+ 4-bit register                                        : 2
+ 7-bit register                                        : 1
+# Latches                                              : 8
+ 16-bit latch                                          : 8
+# Comparators                                          : 18
+ 11-bit comparator less                                : 8
+ 14-bit comparator less                                : 1
+ 16-bit comparator greater                             : 8
+ 17-bit comparator greatequal                          : 1
+# Logic shifters                                       : 1
+ 17-bit shifter logical right                          : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Reading core <ipcore_dir/sinus.ngc>.
+Reading core <ipcore_dir/mem.ngc>.
+Loading core <sinus> for timing and area information for instance <sig>.
+Loading core <mem> for timing and area information for instance <memory>.
+INFO:Xst:2261 - The FF/Latch <addr_0> in Unit <amba_slave> is equivalent to the following 5 FFs/Latches, which will be removed : <addr_1> <addr_2> <data_0> <data_1> <data_6> 
+INFO:Xst:2261 - The FF/Latch <addr_3> in Unit <amba_slave> is equivalent to the following 4 FFs/Latches, which will be removed : <data_2> <data_3> <data_4> <data_5> 
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_2> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_1> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_0> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_13> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_12> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_11> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_10> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_9> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_8> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_7> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_6> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_5> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_4> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_3> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_2> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_1> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_0> has a constant value of 0 in block <sig4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_13> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_12> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_11> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_10> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_9> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_8> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_7> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_6> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_5> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <addr_0> (without init value) has a constant value of 0 in block <amba_slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <addr_3> (without init value) has a constant value of 1 in block <amba_slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_13> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_12> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_11> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_10> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_9> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_8> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_7> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_6> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_5> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_4> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_3> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_2> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_1> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_0> has a constant value of 0 in block <sig2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_13> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_12> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_11> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_10> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_9> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_8> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_7> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_6> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_5> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_4> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_3> has a constant value of 0 in block <sig3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_5> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_4> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_3> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_2> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_1> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_0> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_13> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_12> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_11> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_10> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_9> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_8> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_7> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_6> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_5> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_4> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_3> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_2> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_1> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_0> has a constant value of 0 in block <sig8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_4> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_3> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_2> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_1> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_0> has a constant value of 0 in block <sig5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_13> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_12> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_11> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_10> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_9> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_8> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_7> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_6> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_5> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_4> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_3> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_2> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_1> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_0> has a constant value of 0 in block <sig6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_13> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_12> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_11> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_10> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_9> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_8> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_7> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <step_6> has a constant value of 0 in block <sig7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <signal_15> of sequential type is unconnected in block <uut>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <0>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <1>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <2>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <3>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <4>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <5>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <6>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <7>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <8>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <9>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <10>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <11>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <12>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <13>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <14>.
+WARNING:Xst:1294 - Latch <0> is equivalent to a wire in block <15>.
+WARNING:Xst:1290 - Hierarchical block <amba_slave> is unconnected in block <uut>.
+   It will be removed from the design.
+WARNING:Xst:2404 -  FFs/Latches <data<6:6>> (without init value) have a constant value of 0 in block <slave>.
+
+Synthesizing (advanced) Unit <controller>.
+The following registers are absorbed into accumulator <temp_neg>: 1 register on signal <temp_neg>.
+Unit <controller> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 16
+ 13-bit adder carry out                                : 1
+ 14-bit adder                                          : 1
+ 16-bit adder                                          : 9
+ 17-bit adder                                          : 2
+ 17-bit adder carry out                                : 1
+ 17-bit subtractor                                     : 1
+ 4-bit adder                                           : 1
+# Counters                                             : 1
+ 5-bit up counter                                      : 1
+# Accumulators                                         : 10
+ 11-bit up accumulator                                 : 8
+ 14-bit up accumulator                                 : 1
+ 17-bit up accumulator                                 : 1
+# Registers                                            : 329
+ Flip-Flops                                            : 329
+# Latches                                              : 8
+ 16-bit latch                                          : 8
+# Comparators                                          : 18
+ 11-bit comparator less                                : 8
+ 14-bit comparator less                                : 1
+ 16-bit comparator greater                             : 8
+ 17-bit comparator greatequal                          : 1
+# Logic shifters                                       : 1
+ 17-bit shifter logical right                          : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <data_0> (without init value) has a constant value of 0 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <data_1> (without init value) has a constant value of 0 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <data_2> (without init value) has a constant value of 1 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <data_3> (without init value) has a constant value of 1 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <data_4> (without init value) has a constant value of 1 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <data_5> (without init value) has a constant value of 1 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <addr_0> (without init value) has a constant value of 0 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <addr_1> (without init value) has a constant value of 0 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <addr_2> (without init value) has a constant value of 0 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <addr_3> (without init value) has a constant value of 1 in block <slave>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <curr_length_0> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <curr_length_1> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <curr_length_2> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <signal_1> in Unit <controller> is equivalent to the following FF/Latch, which will be removed : <signal_0> 
+
+Optimizing unit <controller_test> ...
+
+Optimizing unit <slave> ...
+
+Optimizing unit <make_sig> ...
+
+Optimizing unit <generate_sinus> ...
+
+Optimizing unit <controller> ...
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_14> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_15> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_14> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_15> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_14> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_2_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_3_15> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_15> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_14> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_7_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_4_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_15> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_14> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_5_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_15> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_14> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_6_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_14> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <uut/freq_1_15> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig4/step_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig2/step_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig3/step_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig8/step_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig5/step_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_9> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_8> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_7> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_6> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_5> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_4> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_3> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_2> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_1> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig6/step_0> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_13> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_12> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_11> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <uut/sig7/step_10> has a constant value of 0 in block <controller_test>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <uut/amba_slave/AWREADY> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/amba_slave/BVALID> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/amba_slave/wstate_0> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/amba_slave/wstate_1> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/amba_slave/WREADY> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/BVALID> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/WREADY> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/AWREADY> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/signal_15> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:2677 - Node <uut/res_0> of sequential type is unconnected in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_15> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_14> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_13> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_12> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_11> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_10> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_9> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_8> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_7> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_6> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_5> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_4> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_3> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_2> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_1> is equivalent to a wire in block <controller_test>.
+WARNING:Xst:1294 - Latch <uut/freq_0_0> is equivalent to a wire in block <controller_test>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block controller_test, actual ratio is 89.
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <uut/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 331
+ Flip-Flops                                            : 331
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : controller_test.ngr
+Top Level Output File Name         : controller_test
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 2
+
+Cell Usage :
+# BELS                             : 25689
+#      GND                         : 10
+#      INV                         : 269
+#      LUT1                        : 483
+#      LUT2                        : 3291
+#      LUT2_D                      : 17
+#      LUT3                        : 4696
+#      LUT3_D                      : 5
+#      LUT4                        : 263
+#      LUT4_D                      : 7
+#      LUT4_L                      : 138
+#      MUXCY                       : 8104
+#      MUXF5                       : 12
+#      VCC                         : 10
+#      XORCY                       : 8384
+# FlipFlops/Latches                : 8411
+#      FD                          : 7454
+#      FDE                         : 311
+#      FDR                         : 41
+#      FDRE                        : 592
+#      FDS                         : 13
+# RAMS                             : 1
+#      RAMB16BWE                   : 1
+# Shift Registers                  : 40
+#      SRL16E                      : 40
+# Clock Buffers                    : 10
+#      BUFG                        : 9
+#      BUFGP                       : 1
+# IO Buffers                       : 1
+#      OBUF                        : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s700anfgg484-4 
+
+ Number of Slices:                     5216  out of   5888    88%  
+ Number of Slice Flip Flops:           8411  out of  11776    71%  
+ Number of 4 input LUTs:               9209  out of  11776    78%  
+    Number used as logic:              9169
+    Number used as Shift registers:      40
+ Number of IOs:                           2
+ Number of bonded IOBs:                   2  out of    372     0%  
+ Number of BRAMs:                         1  out of     20     5%  
+ Number of GCLKs:                        10  out of     24    41%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 6     |
+uut/sig1/clk14_01                  | BUFG                   | 1015  |
+clk101                             | BUFG                   | 326   |
+uut/sig2/clk14_01                  | BUFG                   | 1015  |
+uut/sig3/clk14_01                  | BUFG                   | 1015  |
+uut/sig4/clk14_01                  | BUFG                   | 1015  |
+uut/sig5/clk14_01                  | BUFG                   | 1015  |
+uut/sig6/clk14_01                  | BUFG                   | 1015  |
+uut/sig7/clk14_01                  | BUFG                   | 1015  |
+uut/sig8/clk14_01                  | BUFG                   | 1015  |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 9.433ns (Maximum Frequency: 106.012MHz)
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 5.531ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 3.023ns (frequency: 330.797MHz)
+  Total number of paths / destination ports: 25 / 7
+-------------------------------------------------------------------------
+Delay:               3.023ns (Levels of Logic = 2)
+  Source:            count10_2 (FF)
+  Destination:       clk10 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: count10_2 to clk10
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               5   0.591   0.776  count10_2 (count10_2)
+     LUT4:I0->O            1   0.648   0.000  clk10_cmp_eq00001 (clk10_cmp_eq00001)
+     MUXF5:I0->O           1   0.276   0.420  clk10_cmp_eq0000_f5 (clk10_cmp_eq0000)
+     FDE:CE                    0.312          clk10
+    ----------------------------------------
+    Total                      3.023ns (1.827ns logic, 1.196ns route)
+                                       (60.4% logic, 39.6% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'uut/sig1/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            uut/sig1/sig/blk0000023a (FF)
+  Destination:       uut/sig1/sig/blk000001fe (FF)
+  Source Clock:      uut/sig1/clk14_01 falling
+  Destination Clock: uut/sig1/clk14_01 falling
+
+  Data Path: uut/sig1/sig/blk0000023a to uut/sig1/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk101'
+  Clock period: 9.433ns (frequency: 106.012MHz)
+  Total number of paths / destination ports: 19544 / 518
+-------------------------------------------------------------------------
+Delay:               9.433ns (Levels of Logic = 37)
+  Source:            uut/temp_pos_0 (FF)
+  Destination:       uut/temp_16 (FF)
+  Source Clock:      clk101 rising
+  Destination Clock: clk101 rising
+
+  Data Path: uut/temp_pos_0 to uut/temp_16
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              4   0.591   0.730  uut/temp_pos_0 (uut/temp_pos_0)
+     LUT2:I0->O            1   0.648   0.000  uut/Mcompar_signal_cmp_ge0000_lut<0> (uut/Mcompar_signal_cmp_ge0000_lut<0>)
+     MUXCY:S->O            1   0.632   0.000  uut/Mcompar_signal_cmp_ge0000_cy<0> (uut/Mcompar_signal_cmp_ge0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<1> (uut/Mcompar_signal_cmp_ge0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<2> (uut/Mcompar_signal_cmp_ge0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<3> (uut/Mcompar_signal_cmp_ge0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<4> (uut/Mcompar_signal_cmp_ge0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<5> (uut/Mcompar_signal_cmp_ge0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<6> (uut/Mcompar_signal_cmp_ge0000_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<7> (uut/Mcompar_signal_cmp_ge0000_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<8> (uut/Mcompar_signal_cmp_ge0000_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<9> (uut/Mcompar_signal_cmp_ge0000_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<10> (uut/Mcompar_signal_cmp_ge0000_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<11> (uut/Mcompar_signal_cmp_ge0000_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<12> (uut/Mcompar_signal_cmp_ge0000_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<13> (uut/Mcompar_signal_cmp_ge0000_cy<13>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<14> (uut/Mcompar_signal_cmp_ge0000_cy<14>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Mcompar_signal_cmp_ge0000_cy<15> (uut/Mcompar_signal_cmp_ge0000_cy<15>)
+     MUXCY:CI->O          31   0.141   1.294  uut/Mcompar_signal_cmp_ge0000_cy<16> (uut/signal_cmp_ge0000)
+     LUT3:I2->O            1   0.648   0.423  uut/temp_mux0001<0>1 (uut/temp_mux0001<0>)
+     LUT4:I3->O            1   0.648   0.000  uut/Msub_temp_mux0000_lut<0> (uut/Msub_temp_mux0000_lut<0>)
+     MUXCY:S->O            1   0.632   0.000  uut/Msub_temp_mux0000_cy<0> (uut/Msub_temp_mux0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<1> (uut/Msub_temp_mux0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<2> (uut/Msub_temp_mux0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<3> (uut/Msub_temp_mux0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<4> (uut/Msub_temp_mux0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<5> (uut/Msub_temp_mux0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<6> (uut/Msub_temp_mux0000_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<7> (uut/Msub_temp_mux0000_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<8> (uut/Msub_temp_mux0000_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<9> (uut/Msub_temp_mux0000_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<10> (uut/Msub_temp_mux0000_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<11> (uut/Msub_temp_mux0000_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<12> (uut/Msub_temp_mux0000_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<13> (uut/Msub_temp_mux0000_cy<13>)
+     MUXCY:CI->O           1   0.065   0.000  uut/Msub_temp_mux0000_cy<14> (uut/Msub_temp_mux0000_cy<14>)
+     MUXCY:CI->O           0   0.065   0.000  uut/Msub_temp_mux0000_cy<15> (uut/Msub_temp_mux0000_cy<15>)
+     XORCY:CI->O           1   0.844   0.000  uut/Msub_temp_mux0000_xor<16> (uut/temp_mux0000<16>)
+     FD:D                      0.252          uut/temp_16
+    ----------------------------------------
+    Total                      9.433ns (6.986ns logic, 2.447ns route)
+                                       (74.1% logic, 25.9% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'uut/sig2/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            uut/sig2/sig/blk0000023a (FF)
+  Destination:       uut/sig2/sig/blk000001fe (FF)
+  Source Clock:      uut/sig2/clk14_01 falling
+  Destination Clock: uut/sig2/clk14_01 falling
+
+  Data Path: uut/sig2/sig/blk0000023a to uut/sig2/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'uut/sig3/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            uut/sig3/sig/blk0000023a (FF)
+  Destination:       uut/sig3/sig/blk000001fe (FF)
+  Source Clock:      uut/sig3/clk14_01 falling
+  Destination Clock: uut/sig3/clk14_01 falling
+
+  Data Path: uut/sig3/sig/blk0000023a to uut/sig3/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'uut/sig4/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            uut/sig4/sig/blk0000023a (FF)
+  Destination:       uut/sig4/sig/blk000001fe (FF)
+  Source Clock:      uut/sig4/clk14_01 falling
+  Destination Clock: uut/sig4/clk14_01 falling
+
+  Data Path: uut/sig4/sig/blk0000023a to uut/sig4/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'uut/sig5/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            uut/sig5/sig/blk0000023a (FF)
+  Destination:       uut/sig5/sig/blk000001fe (FF)
+  Source Clock:      uut/sig5/clk14_01 falling
+  Destination Clock: uut/sig5/clk14_01 falling
+
+  Data Path: uut/sig5/sig/blk0000023a to uut/sig5/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'uut/sig6/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            uut/sig6/sig/blk0000023a (FF)
+  Destination:       uut/sig6/sig/blk000001fe (FF)
+  Source Clock:      uut/sig6/clk14_01 falling
+  Destination Clock: uut/sig6/clk14_01 falling
+
+  Data Path: uut/sig6/sig/blk0000023a to uut/sig6/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'uut/sig7/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            uut/sig7/sig/blk0000023a (FF)
+  Destination:       uut/sig7/sig/blk000001fe (FF)
+  Source Clock:      uut/sig7/clk14_01 falling
+  Destination Clock: uut/sig7/clk14_01 falling
+
+  Data Path: uut/sig7/sig/blk0000023a to uut/sig7/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'uut/sig8/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            uut/sig8/sig/blk0000023a (FF)
+  Destination:       uut/sig8/sig/blk000001fe (FF)
+  Source Clock:      uut/sig8/clk14_01 falling
+  Destination Clock: uut/sig8/clk14_01 falling
+
+  Data Path: uut/sig8/sig/blk0000023a to uut/sig8/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk101'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              5.531ns (Levels of Logic = 1)
+  Source:            uut/res_signal (FF)
+  Destination:       aud (PAD)
+  Source Clock:      clk101 rising
+
+  Data Path: uut/res_signal to aud
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               1   0.591   0.420  uut/res_signal (uut/res_signal)
+     OBUF:I->O                 4.520          aud_OBUF (aud)
+    ----------------------------------------
+    Total                      5.531ns (5.111ns logic, 0.420ns route)
+                                       (92.4% logic, 7.6% route)
+
+=========================================================================
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to uut/sig1/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to uut/sig1/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to uut/sig2/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to uut/sig2/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to uut/sig3/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to uut/sig3/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to uut/sig4/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to uut/sig4/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to uut/sig5/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to uut/sig5/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to uut/sig6/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to uut/sig6/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to uut/sig7/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to uut/sig7/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to uut/sig8/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to uut/sig8/sig.
+
+
+Total REAL time to Xst completion: 201.00 secs
+Total CPU time to Xst completion: 201.06 secs
+ 
+--> 
+
+Total memory usage is 430132 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  517 (   0 filtered)
+Number of infos    :   84 (   0 filtered)
+

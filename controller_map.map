@@ -1,0 +1,122 @@
+Release 13.4 Map O.87xd (nt64)
+Xilinx Map Application Log File for Design 'controller'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr
+off -c 100 -o controller_map.ncd controller.ngd controller.pcf 
+Target Device  : xc3s700an
+Target Package : fgg484
+Target Speed   : -4
+Mapper Version : spartan3a -- $Revision: 1.55 $
+Mapped Date    : Fri Jun 22 15:05:55 2012
+
+Mapping design into LUTs...
+Running directed packing...
+Running delay-based LUT packing...
+Running related packing...
+Updating timing models...
+WARNING:PhysDesignRules:372 - Gated clock. Clock net freq_1_cmp_eq0000 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net freq_0_not0001 is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net freq_2_cmp_eq0000 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net freq_5_cmp_eq0000 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net freq_3_cmp_eq0000 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net freq_4_cmp_eq0000 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net freq_6_cmp_eq0000 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net freq_7_cmp_eq0000 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA0> on
+   block:<memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
+   tr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA1> on
+   block:<memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
+   tr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA8> on
+   block:<memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
+   tr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA9> on
+   block:<memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
+   tr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA16> on
+   block:<memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
+   tr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA17> on
+   block:<memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
+   tr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA24> on
+   block:<memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
+   tr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA25> on
+   block:<memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cs
+   tr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+
+Design Summary
+--------------
+
+Design Summary:
+Number of errors:      0
+Number of warnings:   16
+Logic Utilization:
+  Total Number Slice Registers:       8,495 out of  11,776   72%
+    Number used as Flip Flops:        8,367
+    Number used as Latches:             128
+  Number of 4 input LUTs:             8,691 out of  11,776   73%
+Logic Distribution:
+  Number of occupied Slices:          5,093 out of   5,888   86%
+    Number of Slices containing only related logic:   5,093 out of   5,093 100%
+    Number of Slices containing unrelated logic:          0 out of   5,093   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:       9,052 out of  11,776   76%
+    Number used as logic:             8,651
+    Number used as a route-thru:        361
+    Number used as Shift registers:      40
+
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+
+  Number of bonded IOBs:                 21 out of     372    5%
+    IOB Flip Flops:                       3
+  Number of BUFGMUXs:                    10 out of      24   41%
+  Number of RAMB16BWEs:                   1 out of      20    5%
+
+Average Fanout of Non-Clock Nets:                2.21
+
+Peak Memory Usage:  424 MB
+Total REAL time to MAP completion:  54 secs 
+Total CPU time to MAP completion:   40 secs 
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Mapping completed.
+See MAP report file "controller_map.mrp" for details.

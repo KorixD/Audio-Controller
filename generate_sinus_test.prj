@@ -1,0 +1,3 @@
+verilog work "ipcore_dir/sinus.v"
+verilog work "generate_sinus.v"
+verilog work "generate_sinus_test.v"

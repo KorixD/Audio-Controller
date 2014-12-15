@@ -1,0 +1,121 @@
+Release 13.4 par O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+ ¿“ﬂ-œ ::  Fri Jun 22 13:54:01 2012
+
+par -w -intstyle ise -ol high -t 1 generate_sinus_map.ncd generate_sinus.ncd
+generate_sinus.pcf 
+
+
+Constraints file: generate_sinus.pcf.
+Loading device for application Rf_Device from file '3s700a.nph' in environment D:\Xilinx\13.4\ISE_DS\ISE\.
+   "generate_sinus" is an NCD, version 3.2, device xc3s700an, package fgg484, speed -4
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
+Initializing voltage to 1.140 Volts. (default - Range: 1.140 to 1.260 Volts)
+
+INFO:Par:282 - No user timing constraints were detected or you have set the option to ignore timing constraints ("par
+   -x"). Place and Route will run in "Performance Evaluation Mode" to automatically improve the performance of all
+   internal clocks in this design. Because there are not defined timing requirements, a timing score will not be
+   reported in the PAR report in this mode. The PAR timing summary will list the performance achieved for each clock.
+   Note: For the fastest runtime, set the effort level to "std".  For best performance, set the effort level to "high".
+
+Device speed data version:  "PRODUCTION 1.42 2012-01-07".
+
+
+Design Summary Report:
+
+ Number of External IOBs                          31 out of 372     8%
+
+   Number of External Input IOBs                 15
+
+      Number of External Input IBUFs             15
+
+   Number of External Output IOBs                16
+
+      Number of External Output IOBs             16
+
+   Number of External Bidir IOBs                  0
+
+
+   Number of BUFGMUXs                        2 out of 24      8%
+   Number of Slices                        599 out of 5888   10%
+      Number of SLICEMs                      5 out of 2944    1%
+
+
+
+Overall effort level (-ol):   High 
+Placer effort level (-pl):    High 
+Placer cost table entry (-t): 1
+Router effort level (-rl):    High 
+
+Starting initial Timing Analysis.  REAL time: 7 secs 
+Finished initial Timing Analysis.  REAL time: 7 secs 
+
+
+Starting Placer
+Total REAL time at the beginning of Placer: 7 secs 
+Total CPU  time at the beginning of Placer: 7 secs 
+
+Phase 1.1  Initial Placement Analysis
+Phase 1.1  Initial Placement Analysis (Checksum:30ae9) REAL time: 7 secs 
+
+Phase 2.7  Design Feasibility Check
+Phase 2.7  Design Feasibility Check (Checksum:30ae9) REAL time: 7 secs 
+
+Phase 3.31  Local Placement Optimization
+Phase 3.31  Local Placement Optimization (Checksum:30ae9) REAL time: 7 secs 
+
+Phase 4.2  Initial Clock and IO Placement
+..........
+Phase 4.2  Initial Clock and IO Placement (Checksum:f4e29845) REAL time: 19 secs 
+
+Phase 5.30  Global Clock Region Assignment
+Phase 5.30  Global Clock Region Assignment (Checksum:f4e29845) REAL time: 19 secs 
+
+Phase 6.36  Local Placement Optimization
+Phase 6.36  Local Placement Optimization (Checksum:f4e29845) REAL time: 19 secs 
+
+Phase 7.3  Local Placement Optimization
+...........
+Phase 7.3  Local Placement Optimization (Checksum:1805ad80) REAL time: 22 secs 
+
+Phase 8.5  Local Placement Optimization
+Phase 8.5  Local Placement Optimization (Checksum:1805ad80) REAL time: 22 secs 
+
+Phase 9.8  Global Placement
+....................................
+..
+Phase 9.8  Global Placement (Checksum:94c87b5c) REAL time: 23 secs 
+
+Phase 10.5  Local Placement Optimization
+Phase 10.5  Local Placement Optimization (Checksum:94c87b5c) REAL time: 23 secs 
+
+Phase 11.18  Placement Optimization
+Phase 11.18  Placement Optimization (Checksum:1a44ba02) REAL time: 31 secs 
+
+Phase 12.5  Local Placement Optimization
+Phase 12.5  Local Placement Optimization (Checksum:1a44ba02) REAL time: 31 secs 
+
+Total REAL time to Placer completion: 31 secs 
+Total CPU  time to Placer completion: 31 secs 
+Writing design to file generate_sinus.ncd
+
+
+
+Starting Router
+
+
+Phase  1  : 3876 unrouted;      REAL time: 44 secs 
+
+Phase  2  : 3282 unrouted;      REAL time: 44 secs 
+
+Phase  3  : 614 unrouted;      REAL time: 46 secs 
+
+Phase  4  : 682 unrouted; (Par is working to improve performance)     REAL time: 48 secs 
+
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 50 secs 
+
+Updating file: generate_sinus.ncd with current fully routed design.
+
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 52 secs 

@@ -1,0 +1,1204 @@
+Release 13.4 - xst O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.73 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.73 secs
+ 
+--> Reading design: dev.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "dev.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "dev"
+Output Format                      : NGC
+Target Device                      : xc3s700an-4-fgg484
+
+---- Source Options
+Top Module Name                    : dev
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ipcore_dir/sinus.v" in library work
+Compiling verilog file "slave.v" in library work
+Module <sinus> compiled
+Compiling verilog file "master.v" in library work
+Module <slave> compiled
+Compiling verilog file "make_sig.v" in library work
+Module <master> compiled
+Compiling verilog file "ipcore_dir/mem.v" in library work
+Module <make_sig> compiled
+Compiling verilog file "ipcore_dir/mel_mem.v" in library work
+Module <mem> compiled
+Compiling verilog file "generate_sinus.v" in library work
+Module <mel_mem> compiled
+Compiling verilog file "master_dev.v" in library work
+Module <generate_sinus> compiled
+Compiling verilog file "controller.v" in library work
+Module <master_dev> compiled
+Compiling verilog file "dev.v" in library work
+Module <controller> compiled
+Module <dev> compiled
+No errors in compilation
+Analysis of file <"dev.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <dev> in library <work>.
+
+Analyzing hierarchy for module <controller> in library <work>.
+
+Analyzing hierarchy for module <master_dev> in library <work>.
+
+Analyzing hierarchy for module <slave> in library <work> with parameters.
+	READY = "00000000000000000000000000000001"
+	RESET = "00000000000000000000000000000000"
+	RESP = "00000000000000000000000000000011"
+	VALID = "00000000000000000000000000000010"
+
+Analyzing hierarchy for module <generate_sinus> in library <work> with parameters.
+	MAX = "0010000000000000"
+	MIN = "1110000000000000"
+
+Analyzing hierarchy for module <make_sig> in library <work>.
+
+Analyzing hierarchy for module <master> in library <work> with parameters.
+	READY = "00000000000000000000000000000010"
+	RESET = "00000000000000000000000000000000"
+	RESP = "00000000000000000000000000000011"
+	VALID = "00000000000000000000000000000001"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <dev>.
+Module <dev> is correct for synthesis.
+ 
+Analyzing module <controller> in library <work>.
+WARNING:Xst:2211 - "ipcore_dir/mem.v" line 67: Instantiating black box module <mem>.
+Module <controller> is correct for synthesis.
+ 
+Analyzing module <slave> in library <work>.
+	READY = 32'sb00000000000000000000000000000001
+	RESET = 32'sb00000000000000000000000000000000
+	RESP = 32'sb00000000000000000000000000000011
+	VALID = 32'sb00000000000000000000000000000010
+Module <slave> is correct for synthesis.
+ 
+Analyzing module <generate_sinus> in library <work>.
+	MAX = 16'b0010000000000000
+	MIN = 16'b1110000000000000
+WARNING:Xst:2211 - "ipcore_dir/sinus.v" line 39: Instantiating black box module <sinus>.
+Module <generate_sinus> is correct for synthesis.
+ 
+    Set user-defined property "SYN_BLACK_BOX =  1" for instance <sig> in unit <generate_sinus>.
+    Set user-defined property "SYN_NOPRUNE =  1" for instance <sig> in unit <generate_sinus>.
+    Set property "SYN_NOPRUNE = 1" for unit <sinus>.
+Analyzing module <make_sig> in library <work>.
+Module <make_sig> is correct for synthesis.
+ 
+Analyzing module <master_dev> in library <work>.
+WARNING:Xst:2211 - "ipcore_dir/mel_mem.v" line 70: Instantiating black box module <mel_mem>.
+Module <master_dev> is correct for synthesis.
+ 
+Analyzing module <master> in library <work>.
+	READY = 32'sb00000000000000000000000000000010
+	RESET = 32'sb00000000000000000000000000000000
+	RESP = 32'sb00000000000000000000000000000011
+	VALID = 32'sb00000000000000000000000000000001
+Module <master> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <slave>.
+    Related source file is "slave.v".
+    Found 4-bit register for signal <addr>.
+    Found 1-bit register for signal <BVALID>.
+    Found 1-bit register for signal <WREADY>.
+    Found 1-bit register for signal <AWREADY>.
+    Found 7-bit register for signal <data>.
+    Found 2-bit register for signal <wstate>.
+    Summary:
+	inferred  16 D-type flip-flop(s).
+Unit <slave> synthesized.
+
+
+Synthesizing Unit <make_sig>.
+    Related source file is "make_sig.v".
+WARNING:Xst:647 - Input <sin<0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <sig>.
+    Found 14-bit up accumulator for signal <curr_length>.
+    Found 14-bit adder for signal <pos_length$addsub0001> created at line 35.
+    Found 13-bit adder carry out for signal <pos_length$addsub0002> created at line 33.
+    Found 14-bit comparator less for signal <sig$cmp_lt0000> created at line 41.
+    Summary:
+	inferred   1 Accumulator(s).
+	inferred   1 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+Unit <make_sig> synthesized.
+
+
+Synthesizing Unit <master>.
+    Related source file is "master.v".
+    Found 4-bit register for signal <AWADDR>.
+    Found 1-bit register for signal <WVALID>.
+    Found 1-bit register for signal <BREADY>.
+    Found 1-bit register for signal <AWVALID>.
+    Found 7-bit register for signal <WDATA>.
+    Found 2-bit register for signal <wstate>.
+    Summary:
+	inferred  16 D-type flip-flop(s).
+Unit <master> synthesized.
+
+
+Synthesizing Unit <master_dev>.
+    Related source file is "master_dev.v".
+WARNING:Xst:646 - Signal <douta<7>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Register <WVALID_buf> equivalent to <AWVALID_buf> has been removed
+    Found 4-bit register for signal <AWADDR>.
+    Found 1-bit register for signal <WVALID>.
+    Found 1-bit register for signal <BREADY>.
+    Found 1-bit register for signal <AWVALID>.
+    Found 7-bit register for signal <WDATA>.
+    Found 9-bit up counter for signal <addra>.
+    Found 32-bit comparator not equal for signal <addra$cmp_ne0000> created at line 115.
+    Found 1-bit register for signal <AWVALID_buf>.
+    Found 7-bit comparator equal for signal <AWVALID_buf$cmp_eq0000> created at line 102.
+    Found 32-bit register for signal <curr_length>.
+    Found 32-bit comparator equal for signal <curr_length$cmp_eq0000> created at line 115.
+    Found 32-bit comparator less for signal <curr_length$cmp_lt0000> created at line 89.
+    Found 32-bit 8-to-1 multiplexer for signal <curr_length$mux0000>.
+    Found 32-bit adder for signal <curr_length$share0000>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  47 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+	inferred  32 Multiplexer(s).
+Unit <master_dev> synthesized.
+
+
+Synthesizing Unit <generate_sinus>.
+    Related source file is "generate_sinus.v".
+WARNING:Xst:647 - Input <freq<14:15>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 11-bit up accumulator for signal <clk14>.
+    Found 16-bit register for signal <phase>.
+    Found 16-bit adder for signal <phase$addsub0000> created at line 51.
+    Found 16-bit comparator greater for signal <phase$cmp_gt0000> created at line 52.
+    Found 14-bit register for signal <step>.
+    Found 11-bit comparator less for signal <step$cmp_lt0000> created at line 48.
+    Summary:
+	inferred   1 Accumulator(s).
+	inferred  30 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <generate_sinus> synthesized.
+
+
+Synthesizing Unit <controller>.
+    Related source file is "controller.v".
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_4>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_5>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_6>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+WARNING:Xst:737 - Found 16-bit latch for signal <freq_7>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 1-bit register for signal <BVALID>.
+    Found 1-bit register for signal <WREADY>.
+    Found 1-bit register for signal <AWREADY>.
+    Found 1-bit register for signal <res_signal>.
+    Found 4-bit register for signal <count>.
+    Found 4-bit adder for signal <count$mux0000>.
+    Found 14-bit register for signal <res>.
+    Found 17-bit adder carry out for signal <res$addsub0001> created at line 181.
+    Found 17-bit shifter logical right for signal <res$shift0001> created at line 181.
+    Found 16-bit register for signal <signal>.
+    Found 16-bit adder for signal <signal$addsub0000> created at line 190.
+    Found 17-bit comparator greatequal for signal <signal$cmp_ge0000> created at line 187.
+    Found 17-bit register for signal <temp>.
+    Found 17-bit subtractor for signal <temp$mux0000>.
+    Found 17-bit register for signal <temp_neg>.
+    Found 17-bit adder for signal <temp_neg$mux0000>.
+    Found 17-bit adder for signal <temp_neg$mux0001>.
+    Found 17-bit register for signal <temp_pos>.
+    Found 17-bit adder for signal <temp_pos$mux0000>.
+    Summary:
+	inferred  89 D-type flip-flop(s).
+	inferred   7 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+	inferred   1 Combinational logic shifter(s).
+Unit <controller> synthesized.
+
+
+Synthesizing Unit <dev>.
+    Related source file is "dev.v".
+    Found 4-bit register for signal <AWADDR_s>.
+    Found 1-bit register for signal <AWREADY_m>.
+    Found 1-bit register for signal <AWVALID_s>.
+    Found 1-bit register for signal <BREADY_s>.
+    Found 1-bit register for signal <BVALID_m>.
+    Found 1-bit register for signal <clk10>.
+    Found 5-bit up counter for signal <count10>.
+    Found 7-bit register for signal <WDATA_s>.
+    Found 1-bit register for signal <WREADY_m>.
+    Found 1-bit register for signal <WVALID_s>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  18 D-type flip-flop(s).
+Unit <dev> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 18
+ 13-bit adder carry out                                : 1
+ 14-bit adder                                          : 1
+ 16-bit adder                                          : 9
+ 17-bit adder                                          : 3
+ 17-bit adder carry out                                : 1
+ 17-bit subtractor                                     : 1
+ 32-bit adder                                          : 1
+ 4-bit adder                                           : 1
+# Counters                                             : 2
+ 5-bit up counter                                      : 1
+ 9-bit up counter                                      : 1
+# Accumulators                                         : 9
+ 11-bit up accumulator                                 : 8
+ 14-bit up accumulator                                 : 1
+# Registers                                            : 55
+ 1-bit register                                        : 22
+ 14-bit register                                       : 9
+ 16-bit register                                       : 9
+ 17-bit register                                       : 3
+ 2-bit register                                        : 2
+ 32-bit register                                       : 1
+ 4-bit register                                        : 5
+ 7-bit register                                        : 4
+# Latches                                              : 8
+ 16-bit latch                                          : 8
+# Comparators                                          : 22
+ 11-bit comparator less                                : 8
+ 14-bit comparator less                                : 1
+ 16-bit comparator greater                             : 8
+ 17-bit comparator greatequal                          : 1
+ 32-bit comparator equal                               : 1
+ 32-bit comparator less                                : 1
+ 32-bit comparator not equal                           : 1
+ 7-bit comparator equal                                : 1
+# Multiplexers                                         : 1
+ 32-bit 8-to-1 multiplexer                             : 1
+# Logic shifters                                       : 1
+ 17-bit shifter logical right                          : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Reading core <ipcore_dir/sinus.ngc>.
+Reading core <ipcore_dir/mel_mem.ngc>.
+Reading core <ipcore_dir/mem.ngc>.
+Loading core <sinus> for timing and area information for instance <sig>.
+Loading core <mel_mem> for timing and area information for instance <melody_mem>.
+Loading core <mem> for timing and area information for instance <memory>.
+WARNING:Xst:2677 - Node <signal_15> of sequential type is unconnected in block <aud_ctrl>.
+
+Synthesizing (advanced) Unit <controller>.
+The following registers are absorbed into accumulator <temp_neg>: 1 register on signal <temp_neg>.
+Unit <controller> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 17
+ 13-bit adder carry out                                : 1
+ 14-bit adder                                          : 1
+ 16-bit adder                                          : 9
+ 17-bit adder                                          : 2
+ 17-bit adder carry out                                : 1
+ 17-bit subtractor                                     : 1
+ 32-bit adder                                          : 1
+ 4-bit adder                                           : 1
+# Counters                                             : 2
+ 5-bit up counter                                      : 1
+ 9-bit up counter                                      : 1
+# Accumulators                                         : 10
+ 11-bit up accumulator                                 : 8
+ 14-bit up accumulator                                 : 1
+ 17-bit up accumulator                                 : 1
+# Registers                                            : 410
+ Flip-Flops                                            : 410
+# Latches                                              : 8
+ 16-bit latch                                          : 8
+# Comparators                                          : 22
+ 11-bit comparator less                                : 8
+ 14-bit comparator less                                : 1
+ 16-bit comparator greater                             : 8
+ 17-bit comparator greatequal                          : 1
+ 32-bit comparator equal                               : 1
+ 32-bit comparator less                                : 1
+ 32-bit comparator not equal                           : 1
+ 7-bit comparator equal                                : 1
+# Multiplexers                                         : 1
+ 32-bit 8-to-1 multiplexer                             : 1
+# Logic shifters                                       : 1
+ 17-bit shifter logical right                          : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1293 - FF/Latch <curr_length_0> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <curr_length_1> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <curr_length_2> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <signal_1> in Unit <controller> is equivalent to the following FF/Latch, which will be removed : <signal_0> 
+
+Optimizing unit <dev> ...
+
+Optimizing unit <slave> ...
+
+Optimizing unit <make_sig> ...
+
+Optimizing unit <master> ...
+
+Optimizing unit <generate_sinus> ...
+
+Optimizing unit <master_dev> ...
+
+Optimizing unit <controller> ...
+WARNING:Xst:2677 - Node <aud_ctrl/signal_15> of sequential type is unconnected in block <dev>.
+WARNING:Xst:2677 - Node <aud_ctrl/res_0> of sequential type is unconnected in block <dev>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+INFO:Xst:2261 - The FF/Latch <master/amba_master/AWVALID> in Unit <dev> is equivalent to the following FF/Latch, which will be removed : <master/amba_master/WVALID> 
+INFO:Xst:2261 - The FF/Latch <master/WVALID> in Unit <dev> is equivalent to the following FF/Latch, which will be removed : <master/AWVALID> 
+INFO:Xst:2261 - The FF/Latch <AWVALID_s> in Unit <dev> is equivalent to the following FF/Latch, which will be removed : <WVALID_s> 
+Found area constraint ratio of 100 (+ 5) on block dev, actual ratio is 93.
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig1/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig2/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig3/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig4/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig5/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig6/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig7/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <aud_ctrl/sig8/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 534
+ Flip-Flops                                            : 534
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : dev.ngr
+Top Level Output File Name         : dev
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 3
+
+Cell Usage :
+# BELS                             : 26175
+#      GND                         : 11
+#      INV                         : 274
+#      LUT1                        : 425
+#      LUT2                        : 3393
+#      LUT2_D                      : 17
+#      LUT3                        : 4728
+#      LUT3_D                      : 5
+#      LUT3_L                      : 3
+#      LUT4                        : 560
+#      LUT4_D                      : 6
+#      LUT4_L                      : 136
+#      MUXCY                       : 8162
+#      MUXF5                       : 19
+#      VCC                         : 11
+#      XORCY                       : 8425
+# FlipFlops/Latches                : 8742
+#      FD                          : 7469
+#      FDC                         : 38
+#      FDCE                        : 14
+#      FDE                         : 443
+#      FDR                         : 45
+#      FDRE                        : 592
+#      FDS                         : 13
+#      LD                          : 112
+#      LD_1                        : 16
+# RAMS                             : 2
+#      RAMB16BWE                   : 2
+# Shift Registers                  : 40
+#      SRL16E                      : 40
+# Clock Buffers                    : 10
+#      BUFG                        : 9
+#      BUFGP                       : 1
+# IO Buffers                       : 2
+#      IBUF                        : 1
+#      OBUF                        : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s700anfgg484-4 
+
+ Number of Slices:                     5435  out of   5888    92%  
+ Number of Slice Flip Flops:           8742  out of  11776    74%  
+ Number of 4 input LUTs:               9587  out of  11776    81%  
+    Number used as logic:              9547
+    Number used as Shift registers:      40
+ Number of IOs:                           3
+ Number of bonded IOBs:                   3  out of    372     0%  
+ Number of BRAMs:                         2  out of     20    10%  
+ Number of GCLKs:                        10  out of     24    41%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+---------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+-------+
+Clock Signal                                             | Clock buffer(FF name)                                                                                                            | Load  |
+---------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+-------+
+clk                                                      | BUFGP                                                                                                                            | 22    |
+clk101                                                   | BUFG                                                                                                                             | 514   |
+master/melody_mem/N0                                     | NONE(master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram)| 1     |
+aud_ctrl/sig1/clk14_01                                   | BUFG                                                                                                                             | 1015  |
+aud_ctrl/sig2/clk14_01                                   | BUFG                                                                                                                             | 1015  |
+aud_ctrl/sig3/clk14_01                                   | BUFG                                                                                                                             | 1015  |
+aud_ctrl/sig4/clk14_01                                   | BUFG                                                                                                                             | 1015  |
+aud_ctrl/sig5/clk14_01                                   | BUFG                                                                                                                             | 1015  |
+aud_ctrl/sig6/clk14_01                                   | BUFG                                                                                                                             | 1015  |
+aud_ctrl/sig7/clk14_01                                   | BUFG                                                                                                                             | 1015  |
+aud_ctrl/sig8/clk14_01                                   | BUFG                                                                                                                             | 1015  |
+aud_ctrl/freq_0_not0001(aud_ctrl/freq_0_not00011:O)      | NONE(*)(aud_ctrl/freq_0_15)                                                                                                      | 16    |
+aud_ctrl/freq_1_cmp_eq0000(aud_ctrl/freq_1_cmp_eq00001:O)| NONE(*)(aud_ctrl/freq_1_15)                                                                                                      | 16    |
+aud_ctrl/freq_2_cmp_eq0000(aud_ctrl/freq_2_cmp_eq00001:O)| NONE(*)(aud_ctrl/freq_2_15)                                                                                                      | 16    |
+aud_ctrl/freq_3_cmp_eq0000(aud_ctrl/freq_3_cmp_eq00001:O)| NONE(*)(aud_ctrl/freq_3_15)                                                                                                      | 16    |
+aud_ctrl/freq_4_cmp_eq0000(aud_ctrl/freq_4_cmp_eq00001:O)| NONE(*)(aud_ctrl/freq_4_15)                                                                                                      | 16    |
+aud_ctrl/freq_5_cmp_eq0000(aud_ctrl/freq_5_cmp_eq00001:O)| NONE(*)(aud_ctrl/freq_5_15)                                                                                                      | 16    |
+aud_ctrl/freq_6_cmp_eq0000(aud_ctrl/freq_6_cmp_eq00001:O)| NONE(*)(aud_ctrl/freq_6_15)                                                                                                      | 16    |
+aud_ctrl/freq_7_cmp_eq0000(aud_ctrl/freq_7_cmp_eq00001:O)| NONE(*)(aud_ctrl/freq_7_15)                                                                                                      | 16    |
+---------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+-------+
+(*) These 8 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+------------------------------------------------+---------------------------------+-------+
+Control Signal                                  | Buffer(FF name)                 | Load  |
+------------------------------------------------+---------------------------------+-------+
+aud_ctrl/amba_slave/reset(master/reset1_INV_0:O)| NONE(aud_ctrl/amba_slave/BVALID)| 52    |
+------------------------------------------------+---------------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 9.433ns (Maximum Frequency: 106.012MHz)
+   Minimum input arrival time before clock: 2.424ns
+   Maximum output required time after clock: 5.531ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 3.865ns (frequency: 258.732MHz)
+  Total number of paths / destination ports: 50 / 12
+-------------------------------------------------------------------------
+Delay:               3.865ns (Levels of Logic = 2)
+  Source:            count10_1 (FF)
+  Destination:       count10_0 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: count10_1 to count10_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              6   0.591   0.812  count10_1 (count10_1)
+     LUT4:I0->O            1   0.648   0.000  clk10_cmp_eq00001 (clk10_cmp_eq00001)
+     MUXF5:I0->O           6   0.276   0.669  clk10_cmp_eq0000_f5 (clk10_cmp_eq0000)
+     FDR:R                     0.869          count10_0
+    ----------------------------------------
+    Total                      3.865ns (2.384ns logic, 1.481ns route)
+                                       (61.7% logic, 38.3% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk101'
+  Clock period: 9.433ns (frequency: 106.012MHz)
+  Total number of paths / destination ports: 25360 / 689
+-------------------------------------------------------------------------
+Delay:               9.433ns (Levels of Logic = 37)
+  Source:            aud_ctrl/temp_pos_0 (FF)
+  Destination:       aud_ctrl/temp_16 (FF)
+  Source Clock:      clk101 rising
+  Destination Clock: clk101 rising
+
+  Data Path: aud_ctrl/temp_pos_0 to aud_ctrl/temp_16
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              4   0.591   0.730  aud_ctrl/temp_pos_0 (aud_ctrl/temp_pos_0)
+     LUT2:I0->O            1   0.648   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_lut<0> (aud_ctrl/Mcompar_signal_cmp_ge0000_lut<0>)
+     MUXCY:S->O            1   0.632   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<0> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<1> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<2> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<3> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<4> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<5> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<6> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<7> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<8> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<9> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<10> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<11> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<12> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<13> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<13>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<14> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<14>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<15> (aud_ctrl/Mcompar_signal_cmp_ge0000_cy<15>)
+     MUXCY:CI->O          31   0.141   1.294  aud_ctrl/Mcompar_signal_cmp_ge0000_cy<16> (aud_ctrl/signal_cmp_ge0000)
+     LUT3:I2->O            1   0.648   0.423  aud_ctrl/temp_mux0001<0>1 (aud_ctrl/temp_mux0001<0>)
+     LUT4:I3->O            1   0.648   0.000  aud_ctrl/Msub_temp_mux0000_lut<0> (aud_ctrl/Msub_temp_mux0000_lut<0>)
+     MUXCY:S->O            1   0.632   0.000  aud_ctrl/Msub_temp_mux0000_cy<0> (aud_ctrl/Msub_temp_mux0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<1> (aud_ctrl/Msub_temp_mux0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<2> (aud_ctrl/Msub_temp_mux0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<3> (aud_ctrl/Msub_temp_mux0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<4> (aud_ctrl/Msub_temp_mux0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<5> (aud_ctrl/Msub_temp_mux0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<6> (aud_ctrl/Msub_temp_mux0000_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<7> (aud_ctrl/Msub_temp_mux0000_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<8> (aud_ctrl/Msub_temp_mux0000_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<9> (aud_ctrl/Msub_temp_mux0000_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<10> (aud_ctrl/Msub_temp_mux0000_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<11> (aud_ctrl/Msub_temp_mux0000_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<12> (aud_ctrl/Msub_temp_mux0000_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<13> (aud_ctrl/Msub_temp_mux0000_cy<13>)
+     MUXCY:CI->O           1   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<14> (aud_ctrl/Msub_temp_mux0000_cy<14>)
+     MUXCY:CI->O           0   0.065   0.000  aud_ctrl/Msub_temp_mux0000_cy<15> (aud_ctrl/Msub_temp_mux0000_cy<15>)
+     XORCY:CI->O           1   0.844   0.000  aud_ctrl/Msub_temp_mux0000_xor<16> (aud_ctrl/temp_mux0000<16>)
+     FD:D                      0.252          aud_ctrl/temp_16
+    ----------------------------------------
+    Total                      9.433ns (6.986ns logic, 2.447ns route)
+                                       (74.1% logic, 25.9% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'aud_ctrl/sig1/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            aud_ctrl/sig1/sig/blk0000023a (FF)
+  Destination:       aud_ctrl/sig1/sig/blk000001fe (FF)
+  Source Clock:      aud_ctrl/sig1/clk14_01 falling
+  Destination Clock: aud_ctrl/sig1/clk14_01 falling
+
+  Data Path: aud_ctrl/sig1/sig/blk0000023a to aud_ctrl/sig1/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'aud_ctrl/sig2/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            aud_ctrl/sig2/sig/blk0000023a (FF)
+  Destination:       aud_ctrl/sig2/sig/blk000001fe (FF)
+  Source Clock:      aud_ctrl/sig2/clk14_01 falling
+  Destination Clock: aud_ctrl/sig2/clk14_01 falling
+
+  Data Path: aud_ctrl/sig2/sig/blk0000023a to aud_ctrl/sig2/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'aud_ctrl/sig3/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            aud_ctrl/sig3/sig/blk0000023a (FF)
+  Destination:       aud_ctrl/sig3/sig/blk000001fe (FF)
+  Source Clock:      aud_ctrl/sig3/clk14_01 falling
+  Destination Clock: aud_ctrl/sig3/clk14_01 falling
+
+  Data Path: aud_ctrl/sig3/sig/blk0000023a to aud_ctrl/sig3/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'aud_ctrl/sig4/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            aud_ctrl/sig4/sig/blk0000023a (FF)
+  Destination:       aud_ctrl/sig4/sig/blk000001fe (FF)
+  Source Clock:      aud_ctrl/sig4/clk14_01 falling
+  Destination Clock: aud_ctrl/sig4/clk14_01 falling
+
+  Data Path: aud_ctrl/sig4/sig/blk0000023a to aud_ctrl/sig4/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'aud_ctrl/sig5/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            aud_ctrl/sig5/sig/blk0000023a (FF)
+  Destination:       aud_ctrl/sig5/sig/blk000001fe (FF)
+  Source Clock:      aud_ctrl/sig5/clk14_01 falling
+  Destination Clock: aud_ctrl/sig5/clk14_01 falling
+
+  Data Path: aud_ctrl/sig5/sig/blk0000023a to aud_ctrl/sig5/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'aud_ctrl/sig6/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            aud_ctrl/sig6/sig/blk0000023a (FF)
+  Destination:       aud_ctrl/sig6/sig/blk000001fe (FF)
+  Source Clock:      aud_ctrl/sig6/clk14_01 falling
+  Destination Clock: aud_ctrl/sig6/clk14_01 falling
+
+  Data Path: aud_ctrl/sig6/sig/blk0000023a to aud_ctrl/sig6/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'aud_ctrl/sig7/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            aud_ctrl/sig7/sig/blk0000023a (FF)
+  Destination:       aud_ctrl/sig7/sig/blk000001fe (FF)
+  Source Clock:      aud_ctrl/sig7/clk14_01 falling
+  Destination Clock: aud_ctrl/sig7/clk14_01 falling
+
+  Data Path: aud_ctrl/sig7/sig/blk0000023a to aud_ctrl/sig7/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'aud_ctrl/sig8/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            aud_ctrl/sig8/sig/blk0000023a (FF)
+  Destination:       aud_ctrl/sig8/sig/blk000001fe (FF)
+  Source Clock:      aud_ctrl/sig8/clk14_01 falling
+  Destination Clock: aud_ctrl/sig8/clk14_01 falling
+
+  Data Path: aud_ctrl/sig8/sig/blk0000023a to aud_ctrl/sig8/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk101'
+  Total number of paths / destination ports: 34 / 34
+-------------------------------------------------------------------------
+Offset:              2.424ns (Levels of Logic = 1)
+  Source:            ARESETn (PAD)
+  Destination:       master/amba_master/BREADY (FF)
+  Destination Clock: clk101 rising
+
+  Data Path: ARESETn to master/amba_master/BREADY
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            35   0.849   1.263  ARESETn_IBUF (ARESETn_IBUF)
+     FDE:CE                    0.312          master/BREADY
+    ----------------------------------------
+    Total                      2.424ns (1.161ns logic, 1.263ns route)
+                                       (47.9% logic, 52.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk101'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              5.531ns (Levels of Logic = 1)
+  Source:            aud_ctrl/res_signal (FF)
+  Destination:       aud_sig (PAD)
+  Source Clock:      clk101 rising
+
+  Data Path: aud_ctrl/res_signal to aud_sig
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               1   0.591   0.420  aud_ctrl/res_signal (aud_ctrl/res_signal)
+     OBUF:I->O                 4.520          aud_sig_OBUF (aud_sig)
+    ----------------------------------------
+    Total                      5.531ns (5.111ns logic, 0.420ns route)
+                                       (92.4% logic, 7.6% route)
+
+=========================================================================
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to aud_ctrl/sig1/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to aud_ctrl/sig1/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to aud_ctrl/sig2/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to aud_ctrl/sig2/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to aud_ctrl/sig3/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to aud_ctrl/sig3/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to aud_ctrl/sig4/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to aud_ctrl/sig4/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to aud_ctrl/sig5/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to aud_ctrl/sig5/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to aud_ctrl/sig6/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to aud_ctrl/sig6/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to aud_ctrl/sig7/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to aud_ctrl/sig7/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to aud_ctrl/sig8/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to aud_ctrl/sig8/sig.
+
+
+Total REAL time to Xst completion: 202.00 secs
+Total CPU time to Xst completion: 201.90 secs
+ 
+--> 
+
+Total memory usage is 437364 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   36 (   0 filtered)
+Number of infos    :   86 (   0 filtered)
+

@@ -1,0 +1,30 @@
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s700an-fgg484-4 controller_test.ngc controller_test.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o controller_test_map.ncd controller_test.ngd controller_test.pcf 
+par -w -intstyle ise -ol high -t 1 controller_test_map.ncd controller_test.ncd controller_test.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml controller_test.twx controller_test.ncd -o controller_test.twr controller_test.pcf 
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s700an-fgg484-4 controller_test.ngc controller_test.ngd  
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s700an-fgg484-4 controller_test.ngc controller_test.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o controller_test_map.ncd controller_test.ngd controller_test.pcf 
+par -w -intstyle ise -ol high -t 1 controller_test_map.ncd controller_test.ncd controller_test.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml controller_test.twx controller_test.ncd -o controller_test.twr controller_test.pcf 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s700an-fgg484-4 controller_test.ngc controller_test.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o controller_test_map.ncd controller_test.ngd controller_test.pcf 
+par -w -intstyle ise -ol high -t 1 controller_test_map.ncd controller_test.ncd controller_test.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml controller_test.twx controller_test.ncd -o controller_test.twr controller_test.pcf 
+bitgen -intstyle ise -f controller_test.ut controller_test.ncd 
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc constraints.ucf -p xc3s700an-fgg484-4 controller_test.ngc controller_test.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o controller_test_map.ncd controller_test.ngd controller_test.pcf 
+par -w -intstyle ise -ol high -t 1 controller_test_map.ncd controller_test.ncd controller_test.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml controller_test.twx controller_test.ncd -o controller_test.twr controller_test.pcf -ucf constraints.ucf 
+bitgen -intstyle ise -f controller_test.ut controller_test.ncd 
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.syr" 
+xst -intstyle ise -ifn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.xst" -ofn "D:/Audio-Controller/EvenOneMoreAudCtrl/controller_test.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc constraints.ucf -p xc3s700an-fgg484-4 controller_test.ngc controller_test.ngd  
+map -intstyle ise -p xc3s700an-fgg484-4 -cm area -ir off -pr off -c 100 -o controller_test_map.ncd controller_test.ngd controller_test.pcf 
+par -w -intstyle ise -ol high -t 1 controller_test_map.ncd controller_test.ncd controller_test.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml controller_test.twx controller_test.ncd -o controller_test.twr controller_test.pcf -ucf constraints.ucf 
+bitgen -intstyle ise -f controller_test.ut controller_test.ncd 

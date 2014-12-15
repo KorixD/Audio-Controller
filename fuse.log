@@ -1,0 +1,62 @@
+Running: D:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o D:/Audio-Controller/EvenOneMoreAudCtrl/dev_test_isim_beh.exe -prj D:/Audio-Controller/EvenOneMoreAudCtrl/dev_test_beh.prj work.dev_test work.glbl 
+ISim O.87xd (signature 0xc3576ebc)
+Number of CPUs detected in this system: 2
+Turning on mult-threading, number of parallel sub-compilation jobs: 4 
+Determining compilation order of HDL files
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/ipcore_dir/sinus.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/slave.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/master.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/make_sig.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/ipcore_dir/mem.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/ipcore_dir/mel_mem.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/generate_sinus.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/master_dev.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/controller.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/dev.v" into library work
+Analyzing Verilog file "D:/Audio-Controller/EvenOneMoreAudCtrl/dev_test.v" into library work
+Analyzing Verilog file "D:/Xilinx/13.4/ISE_DS/ISE//verilog/src/glbl.v" into library work
+WARNING:HDLCompiler:687 - "D:/Xilinx/13.4/ISE_DS/ISE//verilog/src/glbl.v" Line 5: Illegal redeclaration of module <glbl>.
+Starting static elaboration
+Completed static elaboration
+Compiling module BLK_MEM_GEN_V6_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V6_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V6_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V6_3(C_FAMILY="spart...
+Compiling module mem
+Compiling module slave
+Compiling module GND
+Compiling module VCC
+Compiling module FD
+Compiling module FDRE
+Compiling module MUXCY
+Compiling module XORCY
+Compiling module FDE
+Compiling module LUT2(INIT=4'b1001)
+Compiling module LUT3(INIT=8'b11100100)
+Compiling module LUT4(INIT=16'b010001100100000)
+Compiling module LUT1(INIT=2'b10)
+Compiling module INV
+Compiling module MUXF5
+Compiling module LUT2_D(INIT=4'b0110)
+Compiling module LUT4_L(INIT=16'b0100101101111)
+Compiling module SRL16E
+Compiling module sinus
+Compiling module generate_sinus
+Compiling module make_sig
+Compiling module controller
+Compiling module master
+Compiling module BLK_MEM_GEN_V6_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V6_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V6_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V6_3(C_FAMILY="spart...
+Compiling module mel_mem
+Compiling module master_dev
+Compiling module dev
+Compiling module dev_test
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 4 sub-compilation(s) to finish...
+Compiled 46 Verilog Units
+Built simulation executable D:/Audio-Controller/EvenOneMoreAudCtrl/dev_test_isim_beh.exe
+Fuse Memory Usage: 39648 KB
+Fuse CPU Usage: 1949 ms

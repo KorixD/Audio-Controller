@@ -1,0 +1,14 @@
+# Output products list for <sinus>
+sinus.asy
+sinus.gise
+sinus.ngc
+sinus.sym
+sinus.v
+sinus.veo
+sinus.xco
+sinus.xise
+sinus\doc\cordic_ds249.pdf
+sinus\doc\cordic_v4_0_vinfo.html
+sinus_flist.txt
+sinus_readme.txt
+sinus_xmdf.tcl

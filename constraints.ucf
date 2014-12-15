@@ -1,0 +1,4 @@
+NET "clk" LOC = "E12" ;
+# Controls VCCAUX supply rail (IC19)
+NET "aud" LOC = "Y10" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;
+NET "aud" LOC = "V10" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;

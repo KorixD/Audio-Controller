@@ -1,0 +1,1046 @@
+Release 13.4 - xst O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 1.01 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 1.01 secs
+ 
+--> Reading design: controller.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "controller.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "controller"
+Output Format                      : NGC
+Target Device                      : xc3s700an-4-fgg484
+
+---- Source Options
+Top Module Name                    : controller
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ipcore_dir/sinus.v" in library work
+Compiling verilog file "slave.v" in library work
+Module <sinus> compiled
+Compiling verilog file "make_sig.v" in library work
+Module <slave> compiled
+Compiling verilog file "ipcore_dir/mem.v" in library work
+Module <make_sig> compiled
+Compiling verilog file "generate_sinus.v" in library work
+Module <mem> compiled
+Compiling verilog file "controller.v" in library work
+Module <generate_sinus> compiled
+Module <controller> compiled
+No errors in compilation
+Analysis of file <"controller.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <controller> in library <work>.
+
+Analyzing hierarchy for module <slave> in library <work> with parameters.
+	READY = "00000000000000000000000000000001"
+	RESET = "00000000000000000000000000000000"
+	RESP = "00000000000000000000000000000011"
+	VALID = "00000000000000000000000000000010"
+
+Analyzing hierarchy for module <generate_sinus> in library <work> with parameters.
+	MAX = "0010000000000000"
+	MIN = "1110000000000000"
+
+Analyzing hierarchy for module <make_sig> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <controller>.
+WARNING:Xst:2211 - "ipcore_dir/mem.v" line 67: Instantiating black box module <mem>.
+Module <controller> is correct for synthesis.
+ 
+Analyzing module <slave> in library <work>.
+	READY = 32'sb00000000000000000000000000000001
+	RESET = 32'sb00000000000000000000000000000000
+	RESP = 32'sb00000000000000000000000000000011
+	VALID = 32'sb00000000000000000000000000000010
+Module <slave> is correct for synthesis.
+ 
+Analyzing module <generate_sinus> in library <work>.
+	MAX = 16'b0010000000000000
+	MIN = 16'b1110000000000000
+WARNING:Xst:2211 - "ipcore_dir/sinus.v" line 39: Instantiating black box module <sinus>.
+Module <generate_sinus> is correct for synthesis.
+ 
+    Set user-defined property "SYN_BLACK_BOX =  1" for instance <sig> in unit <generate_sinus>.
+    Set user-defined property "SYN_NOPRUNE =  1" for instance <sig> in unit <generate_sinus>.
+    Set property "SYN_NOPRUNE = 1" for unit <sinus>.
+Analyzing module <make_sig> in library <work>.
+Module <make_sig> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <slave>.
+    Related source file is "slave.v".
+    Found 4-bit register for signal <addr>.
+    Found 1-bit register for signal <BVALID>.
+    Found 1-bit register for signal <WREADY>.
+    Found 1-bit register for signal <AWREADY>.
+    Found 7-bit register for signal <data>.
+    Found 2-bit register for signal <wstate>.
+    Summary:
+	inferred  16 D-type flip-flop(s).
+Unit <slave> synthesized.
+
+
+Synthesizing Unit <make_sig>.
+    Related source file is "make_sig.v".
+WARNING:Xst:647 - Input <sin<0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <sig>.
+    Found 14-bit up accumulator for signal <curr_length>.
+    Found 14-bit adder for signal <pos_length$addsub0001> created at line 35.
+    Found 13-bit adder carry out for signal <pos_length$addsub0002> created at line 33.
+    Found 14-bit comparator less for signal <sig$cmp_lt0000> created at line 41.
+    Summary:
+	inferred   1 Accumulator(s).
+	inferred   1 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+Unit <make_sig> synthesized.
+
+
+Synthesizing Unit <generate_sinus>.
+    Related source file is "generate_sinus.v".
+WARNING:Xst:647 - Input <freq<14:15>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 11-bit up accumulator for signal <clk14>.
+    Found 16-bit register for signal <phase>.
+    Found 16-bit adder for signal <phase$addsub0000> created at line 51.
+    Found 16-bit comparator greater for signal <phase$cmp_gt0000> created at line 52.
+    Found 14-bit register for signal <step>.
+    Found 11-bit comparator less for signal <step$cmp_lt0000> created at line 48.
+    Summary:
+	inferred   1 Accumulator(s).
+	inferred  30 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <generate_sinus> synthesized.
+
+
+Synthesizing Unit <controller>.
+    Related source file is "controller.v".
+    Found 1-bit register for signal <AWREADY>.
+    Found 1-bit register for signal <BVALID>.
+    Found 1-bit register for signal <WREADY>.
+    Found 1-bit register for signal <res_signal>.
+    Found 4-bit register for signal <count>.
+    Found 4-bit adder for signal <count$mux0000>.
+    Found 128-bit register for signal <freq>.
+    Found 14-bit register for signal <res>.
+    Found 17-bit adder carry out for signal <res$addsub0001> created at line 182.
+    Found 17-bit shifter logical right for signal <res$shift0001> created at line 182.
+    Found 16-bit register for signal <signal>.
+    Found 16-bit adder for signal <signal$addsub0000> created at line 191.
+    Found 17-bit comparator greatequal for signal <signal$cmp_ge0000> created at line 188.
+    Found 17-bit register for signal <temp>.
+    Found 17-bit subtractor for signal <temp$mux0000>.
+    Found 17-bit register for signal <temp_neg>.
+    Found 17-bit adder for signal <temp_neg$mux0000>.
+    Found 17-bit adder for signal <temp_neg$mux0001>.
+    Found 17-bit register for signal <temp_pos>.
+    Found 17-bit adder for signal <temp_pos$mux0000>.
+    Summary:
+	inferred 217 D-type flip-flop(s).
+	inferred   7 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+	inferred   1 Combinational logic shifter(s).
+Unit <controller> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 17
+ 13-bit adder carry out                                : 1
+ 14-bit adder                                          : 1
+ 16-bit adder                                          : 9
+ 17-bit adder                                          : 3
+ 17-bit adder carry out                                : 1
+ 17-bit subtractor                                     : 1
+ 4-bit adder                                           : 1
+# Accumulators                                         : 9
+ 11-bit up accumulator                                 : 8
+ 14-bit up accumulator                                 : 1
+# Registers                                            : 41
+ 1-bit register                                        : 8
+ 14-bit register                                       : 9
+ 16-bit register                                       : 17
+ 17-bit register                                       : 3
+ 2-bit register                                        : 1
+ 4-bit register                                        : 2
+ 7-bit register                                        : 1
+# Comparators                                          : 18
+ 11-bit comparator less                                : 8
+ 14-bit comparator less                                : 1
+ 16-bit comparator greater                             : 8
+ 17-bit comparator greatequal                          : 1
+# Logic shifters                                       : 1
+ 17-bit shifter logical right                          : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Reading core <ipcore_dir/mem.ngc>.
+Reading core <ipcore_dir/sinus.ngc>.
+Loading core <mem> for timing and area information for instance <memory>.
+Loading core <sinus> for timing and area information for instance <sig>.
+WARNING:Xst:2677 - Node <signal_15> of sequential type is unconnected in block <controller>.
+
+Synthesizing (advanced) Unit <controller>.
+The following registers are absorbed into accumulator <temp_neg>: 1 register on signal <temp_neg>.
+Unit <controller> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 16
+ 13-bit adder carry out                                : 1
+ 14-bit adder                                          : 1
+ 16-bit adder                                          : 9
+ 17-bit adder                                          : 2
+ 17-bit adder carry out                                : 1
+ 17-bit subtractor                                     : 1
+ 4-bit adder                                           : 1
+# Accumulators                                         : 10
+ 11-bit up accumulator                                 : 8
+ 14-bit up accumulator                                 : 1
+ 17-bit up accumulator                                 : 1
+# Registers                                            : 457
+ Flip-Flops                                            : 457
+# Comparators                                          : 18
+ 11-bit comparator less                                : 8
+ 14-bit comparator less                                : 1
+ 16-bit comparator greater                             : 8
+ 17-bit comparator greatequal                          : 1
+# Logic shifters                                       : 1
+ 17-bit shifter logical right                          : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1293 - FF/Latch <curr_length_0> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <curr_length_1> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <curr_length_2> has a constant value of 0 in block <make_sig>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <signal_1> in Unit <controller> is equivalent to the following FF/Latch, which will be removed : <signal_0> 
+
+Optimizing unit <controller> ...
+
+Optimizing unit <slave> ...
+
+Optimizing unit <make_sig> ...
+
+Optimizing unit <generate_sinus> ...
+WARNING:Xst:2677 - Node <res_0> of sequential type is unconnected in block <controller>.
+WARNING:Xst:2677 - Node <signal_15> of sequential type is unconnected in block <controller>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block controller, actual ratio is 92.
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig8/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig7/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig6/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig5/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig4/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig3/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig2/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig1/sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 570
+ Flip-Flops                                            : 570
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : controller.ngr
+Top Level Output File Name         : controller
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 21
+
+Cell Usage :
+# BELS                             : 26019
+#      GND                         : 10
+#      INV                         : 269
+#      LUT1                        : 385
+#      LUT2                        : 3397
+#      LUT2_D                      : 18
+#      LUT2_L                      : 14
+#      LUT3                        : 4754
+#      LUT3_D                      : 3
+#      LUT3_L                      : 5
+#      LUT4                        : 458
+#      LUT4_D                      : 18
+#      LUT4_L                      : 175
+#      MUXCY                       : 8104
+#      MUXF5                       : 15
+#      VCC                         : 10
+#      XORCY                       : 8384
+# FlipFlops/Latches                : 8650
+#      FD                          : 7453
+#      FDC                         : 3
+#      FDE                         : 549
+#      FDR                         : 40
+#      FDRE                        : 592
+#      FDS                         : 13
+# RAMS                             : 1
+#      RAMB16BWE                   : 1
+# Shift Registers                  : 40
+#      SRL16E                      : 40
+# Clock Buffers                    : 10
+#      BUFG                        : 8
+#      BUFGP                       : 2
+# IO Buffers                       : 19
+#      IBUF                        : 15
+#      OBUF                        : 4
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s700anfgg484-4 
+
+ Number of Slices:                     5424  out of   5888    92%  
+ Number of Slice Flip Flops:           8647  out of  11776    73%  
+ Number of 4 input LUTs:               9536  out of  11776    80%  
+    Number used as logic:              9496
+    Number used as Shift registers:      40
+ Number of IOs:                          21
+ Number of bonded IOBs:                  21  out of    372     5%  
+    IOB Flip Flops:                       3
+ Number of BRAMs:                         1  out of     20     5%  
+ Number of GCLKs:                        10  out of     24    41%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 555   |
+ACLK                               | BUFGP                  | 16    |
+sig8/clk14_01                      | BUFG                   | 1015  |
+sig7/clk14_01                      | BUFG                   | 1015  |
+sig6/clk14_01                      | BUFG                   | 1015  |
+sig5/clk14_01                      | BUFG                   | 1015  |
+sig4/clk14_01                      | BUFG                   | 1015  |
+sig3/clk14_01                      | BUFG                   | 1015  |
+sig2/clk14_01                      | BUFG                   | 1015  |
+sig1/clk14_01                      | BUFG                   | 1015  |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-------------------------------------------+------------------------+-------+
+Control Signal                             | Buffer(FF name)        | Load  |
+-------------------------------------------+------------------------+-------+
+amba_slave/reset(amba_slave/reset1_INV_0:O)| NONE(amba_slave/BVALID)| 3     |
+-------------------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 12.461ns (Maximum Frequency: 80.250MHz)
+   Minimum input arrival time before clock: 4.129ns
+   Maximum output required time after clock: 5.531ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 12.461ns (frequency: 80.250MHz)
+  Total number of paths / destination ports: 155471 / 842
+-------------------------------------------------------------------------
+Delay:               12.461ns (Levels of Logic = 24)
+  Source:            freq_7_11 (FF)
+  Destination:       temp_neg_16 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: freq_7_11 to temp_neg_16
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              2   0.591   0.590  freq_7_11 (freq_7_11)
+     LUT4:I0->O            1   0.648   0.500  temp_pos_cmp_eq001525 (temp_pos_cmp_eq001525)
+     LUT4:I1->O            7   0.643   0.711  temp_pos_cmp_eq001576 (temp_pos_cmp_eq0015)
+     LUT4_D:I3->O         10   0.648   0.885  temp_neg_mux0002<0>21 (N3)
+     LUT4:I3->O           14   0.648   1.003  temp_neg_mux0002<0>131 (N35)
+     LUT4:I3->O            1   0.648   0.452  temp_neg_mux0002<0>118_SW0_SW0 (N246)
+     LUT4:I2->O            1   0.648   0.500  temp_neg_mux0002<0>118 (temp_neg_mux0002<0>)
+     LUT2:I1->O            1   0.643   0.000  Maccum_temp_neg_lut<0> (Maccum_temp_neg_lut<0>)
+     MUXCY:S->O            1   0.632   0.000  Maccum_temp_neg_cy<0> (Maccum_temp_neg_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<1> (Maccum_temp_neg_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<2> (Maccum_temp_neg_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<3> (Maccum_temp_neg_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<4> (Maccum_temp_neg_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<5> (Maccum_temp_neg_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<6> (Maccum_temp_neg_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<7> (Maccum_temp_neg_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<8> (Maccum_temp_neg_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<9> (Maccum_temp_neg_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<10> (Maccum_temp_neg_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<11> (Maccum_temp_neg_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<12> (Maccum_temp_neg_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<13> (Maccum_temp_neg_cy<13>)
+     MUXCY:CI->O           1   0.065   0.000  Maccum_temp_neg_cy<14> (Maccum_temp_neg_cy<14>)
+     MUXCY:CI->O           0   0.065   0.000  Maccum_temp_neg_cy<15> (Maccum_temp_neg_cy<15>)
+     XORCY:CI->O           1   0.844   0.000  Maccum_temp_neg_xor<16> (Result<16>)
+     FDR:D                     0.252          temp_neg_16
+    ----------------------------------------
+    Total                     12.461ns (7.820ns logic, 4.641ns route)
+                                       (62.8% logic, 37.2% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'ACLK'
+  Clock period: 4.116ns (frequency: 242.954MHz)
+  Total number of paths / destination ports: 52 / 16
+-------------------------------------------------------------------------
+Delay:               4.116ns (Levels of Logic = 2)
+  Source:            amba_slave/wstate_0 (FF)
+  Destination:       amba_slave/data_6 (FF)
+  Source Clock:      ACLK rising
+  Destination Clock: ACLK rising
+
+  Data Path: amba_slave/wstate_0 to amba_slave/data_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              7   0.591   0.851  amba_slave/wstate_0 (amba_slave/wstate_0)
+     LUT4:I0->O           13   0.648   1.126  amba_slave/addr_next<0>11 (amba_slave/N01)
+     LUT3:I0->O            1   0.648   0.000  amba_slave/data_next<6>1 (amba_slave/data_next<6>)
+     FDE:D                     0.252          amba_slave/data_6
+    ----------------------------------------
+    Total                      4.116ns (2.139ns logic, 1.977ns route)
+                                       (52.0% logic, 48.0% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sig8/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig8/sig/blk0000023a (FF)
+  Destination:       sig8/sig/blk000001fe (FF)
+  Source Clock:      sig8/clk14_01 falling
+  Destination Clock: sig8/clk14_01 falling
+
+  Data Path: sig8/sig/blk0000023a to sig8/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sig7/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig7/sig/blk0000023a (FF)
+  Destination:       sig7/sig/blk000001fe (FF)
+  Source Clock:      sig7/clk14_01 falling
+  Destination Clock: sig7/clk14_01 falling
+
+  Data Path: sig7/sig/blk0000023a to sig7/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sig6/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig6/sig/blk0000023a (FF)
+  Destination:       sig6/sig/blk000001fe (FF)
+  Source Clock:      sig6/clk14_01 falling
+  Destination Clock: sig6/clk14_01 falling
+
+  Data Path: sig6/sig/blk0000023a to sig6/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sig5/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig5/sig/blk0000023a (FF)
+  Destination:       sig5/sig/blk000001fe (FF)
+  Source Clock:      sig5/clk14_01 falling
+  Destination Clock: sig5/clk14_01 falling
+
+  Data Path: sig5/sig/blk0000023a to sig5/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sig4/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig4/sig/blk0000023a (FF)
+  Destination:       sig4/sig/blk000001fe (FF)
+  Source Clock:      sig4/clk14_01 falling
+  Destination Clock: sig4/clk14_01 falling
+
+  Data Path: sig4/sig/blk0000023a to sig4/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sig3/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig3/sig/blk0000023a (FF)
+  Destination:       sig3/sig/blk000001fe (FF)
+  Source Clock:      sig3/clk14_01 falling
+  Destination Clock: sig3/clk14_01 falling
+
+  Data Path: sig3/sig/blk0000023a to sig3/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sig2/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig2/sig/blk0000023a (FF)
+  Destination:       sig2/sig/blk000001fe (FF)
+  Source Clock:      sig2/clk14_01 falling
+  Destination Clock: sig2/clk14_01 falling
+
+  Data Path: sig2/sig/blk0000023a to sig2/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'sig1/clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig1/sig/blk0000023a (FF)
+  Destination:       sig1/sig/blk000001fe (FF)
+  Source Clock:      sig1/clk14_01 falling
+  Destination Clock: sig1/clk14_01 falling
+
+  Data Path: sig1/sig/blk0000023a to sig1/sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'ACLK'
+  Total number of paths / destination ports: 56 / 29
+-------------------------------------------------------------------------
+Offset:              4.129ns (Levels of Logic = 3)
+  Source:            AWVALID (PAD)
+  Destination:       amba_slave/data_6 (FF)
+  Destination Clock: ACLK rising
+
+  Data Path: AWVALID to amba_slave/data_6
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   0.849   0.611  AWVALID_IBUF (AWVALID_IBUF)
+     LUT4:I1->O           13   0.643   1.126  amba_slave/addr_next<0>11 (amba_slave/N01)
+     LUT3:I0->O            1   0.648   0.000  amba_slave/data_next<6>1 (amba_slave/data_next<6>)
+     FDE:D                     0.252          amba_slave/data_6
+    ----------------------------------------
+    Total                      4.129ns (2.392ns logic, 1.737ns route)
+                                       (57.9% logic, 42.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              5.531ns (Levels of Logic = 1)
+  Source:            BVALID (FF)
+  Destination:       BVALID (PAD)
+  Source Clock:      clk rising
+
+  Data Path: BVALID to BVALID
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               1   0.591   0.420  BVALID (BVALID_OBUF)
+     OBUF:I->O                 4.520          BVALID_OBUF (BVALID)
+    ----------------------------------------
+    Total                      5.531ns (5.111ns logic, 0.420ns route)
+                                       (92.4% logic, 7.6% route)
+
+=========================================================================
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig8/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig8/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig7/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig7/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig6/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig6/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig5/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig5/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig4/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig4/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig3/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig3/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig2/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig2/sig.
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig1/sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig1/sig.
+
+
+Total REAL time to Xst completion: 219.00 secs
+Total CPU time to Xst completion: 219.08 secs
+ 
+--> 
+
+Total memory usage is 407220 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   26 (   0 filtered)
+Number of infos    :   82 (   0 filtered)
+

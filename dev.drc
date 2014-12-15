@@ -1,0 +1,93 @@
+Release 13.4 Drc O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Sat Jun 23 10:29:19 2012
+
+drc -z dev.ncd dev.pcf
+
+WARNING:PhysDesignRules:372 - Gated clock. Clock net aud_ctrl/freq_0_not0001 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net aud_ctrl/freq_4_cmp_eq0000
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net aud_ctrl/freq_1_cmp_eq0000
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net aud_ctrl/freq_2_cmp_eq0000
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net aud_ctrl/freq_3_cmp_eq0000
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net aud_ctrl/freq_5_cmp_eq0000
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net aud_ctrl/freq_6_cmp_eq0000
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net aud_ctrl/freq_7_cmp_eq0000
+   is sourced by a combinatorial pin. This is not good design practice. Use the
+   CE pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA0> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA1> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA2> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA3> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA8> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA9> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA10> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA17> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA18> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA24> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA25> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA26> on
+   block:<master/melody_mem/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_g
+   en/valid.cstr/ramloop[0].ram.r/s3a_init.ram/dpram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA0> on
+   block:<aud_ctrl/memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen
+   /valid.cstr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA1> on
+   block:<aud_ctrl/memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen
+   /valid.cstr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA8> on
+   block:<aud_ctrl/memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen
+   /valid.cstr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA9> on
+   block:<aud_ctrl/memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen
+   /valid.cstr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA16> on
+   block:<aud_ctrl/memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen
+   /valid.cstr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA17> on
+   block:<aud_ctrl/memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen
+   /valid.cstr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA24> on
+   block:<aud_ctrl/memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen
+   /valid.cstr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+WARNING:PhysDesignRules:812 - Dangling pin <DIA25> on
+   block:<aud_ctrl/memory/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen
+   /valid.cstr/ramloop[0].ram.r/s3a_init.ram/spram.ram>:<RAMB16BWE_RAMB16BWE>.
+DRC detected 0 errors and 28 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

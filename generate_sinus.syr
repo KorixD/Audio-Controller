@@ -1,0 +1,476 @@
+Release 13.4 - xst O.87xd (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.22 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.22 secs
+ 
+--> Reading design: generate_sinus.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "generate_sinus.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "generate_sinus"
+Output Format                      : NGC
+Target Device                      : xc3s700an-4-fgg484
+
+---- Source Options
+Top Module Name                    : generate_sinus
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "ipcore_dir/sinus.v" in library work
+Compiling verilog file "generate_sinus.v" in library work
+Module <sinus> compiled
+Module <generate_sinus> compiled
+No errors in compilation
+Analysis of file <"generate_sinus.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <generate_sinus> in library <work> with parameters.
+	MAX = "0010000000000000"
+	MIN = "1110000000000000"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <generate_sinus>.
+	MAX = 16'b0010000000000000
+	MIN = 16'b1110000000000000
+WARNING:Xst:2211 - "ipcore_dir/sinus.v" line 39: Instantiating black box module <sinus>.
+Module <generate_sinus> is correct for synthesis.
+ 
+    Set user-defined property "SYN_BLACK_BOX =  1" for instance <sig> in unit <generate_sinus>.
+    Set user-defined property "SYN_NOPRUNE =  1" for instance <sig> in unit <generate_sinus>.
+    Set property "SYN_NOPRUNE = 1" for unit <sinus>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <generate_sinus>.
+    Related source file is "generate_sinus.v".
+WARNING:Xst:647 - Input <freq<14:15>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 11-bit up accumulator for signal <clk14>.
+    Found 16-bit register for signal <phase>.
+    Found 16-bit adder for signal <phase$addsub0000> created at line 51.
+    Found 16-bit comparator greater for signal <phase$cmp_gt0000> created at line 52.
+    Found 14-bit register for signal <step>.
+    Found 11-bit comparator less for signal <step$cmp_lt0000> created at line 48.
+    Summary:
+	inferred   1 Accumulator(s).
+	inferred  30 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <generate_sinus> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 16-bit adder                                          : 1
+# Accumulators                                         : 1
+ 11-bit up accumulator                                 : 1
+# Registers                                            : 2
+ 14-bit register                                       : 1
+ 16-bit register                                       : 1
+# Comparators                                          : 2
+ 11-bit comparator less                                : 1
+ 16-bit comparator greater                             : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Reading core <ipcore_dir/sinus.ngc>.
+Loading core <sinus> for timing and area information for instance <sig>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 16-bit adder                                          : 1
+# Accumulators                                         : 1
+ 11-bit up accumulator                                 : 1
+# Registers                                            : 30
+ Flip-Flops                                            : 30
+# Comparators                                          : 2
+ 11-bit comparator less                                : 1
+ 16-bit comparator greater                             : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <generate_sinus> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block generate_sinus, actual ratio is 10.
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+INFO:Xst:2260 - The FF/Latch <blk00000b89> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f7a> 
+INFO:Xst:2260 - The FF/Latch <blk000000f7> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f79> 
+INFO:Xst:2260 - The FF/Latch <blk00000050> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f7c> 
+INFO:Xst:2260 - The FF/Latch <blk00000b8a> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f7b> 
+INFO:Xst:2260 - The FF/Latch <blk000000f8> in Unit <sig> is equivalent to the following FF/Latch : <blk00000f7d> 
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 41
+ Flip-Flops                                            : 41
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : generate_sinus.ngr
+Top Level Output File Name         : generate_sinus
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 33
+
+Cell Usage :
+# BELS                             : 3145
+#      GND                         : 2
+#      INV                         : 31
+#      LUT1                        : 43
+#      LUT2                        : 413
+#      LUT2_D                      : 2
+#      LUT3                        : 580
+#      LUT4                        : 25
+#      LUT4_L                      : 15
+#      MUXCY                       : 996
+#      MUXF5                       : 1
+#      VCC                         : 2
+#      XORCY                       : 1035
+# FlipFlops/Latches                : 1051
+#      FD                          : 926
+#      FDE                         : 51
+#      FDRE                        : 74
+# Shift Registers                  : 5
+#      SRL16E                      : 5
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 30
+#      IBUF                        : 14
+#      OBUF                        : 16
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s700anfgg484-4 
+
+ Number of Slices:                      640  out of   5888    10%  
+ Number of Slice Flip Flops:           1051  out of  11776     8%  
+ Number of 4 input LUTs:               1114  out of  11776     9%  
+    Number used as logic:              1109
+    Number used as Shift registers:       5
+ Number of IOs:                          33
+ Number of bonded IOBs:                  31  out of    372     8%  
+ Number of GCLKs:                         2  out of     24     8%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk14_01                           | BUFG                   | 1015  |
+clk                                | BUFGP                  | 41    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 5.583ns (Maximum Frequency: 179.115MHz)
+   Minimum input arrival time before clock: 1.521ns
+   Maximum output required time after clock: 5.531ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk14_01'
+  Clock period: 5.484ns (frequency: 182.349MHz)
+  Total number of paths / destination ports: 32954 / 1011
+-------------------------------------------------------------------------
+Delay:               5.484ns (Levels of Logic = 21)
+  Source:            sig/blk0000023a (FF)
+  Destination:       sig/blk000001fe (FF)
+  Source Clock:      clk14_01 falling
+  Destination Clock: clk14_01 falling
+
+  Data Path: sig/blk0000023a to sig/blk000001fe
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              63   0.591   1.352  blk0000023a (sig000002df)
+     LUT2:I1->O            1   0.643   0.000  blk00000ee1 (sig000003ba)
+     MUXCY:S->O            1   0.632   0.000  blk00000a93 (sig000003a6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a96 (sig000003b1)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a98 (sig000003b2)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9a (sig000003b3)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9c (sig000003b4)
+     MUXCY:CI->O           1   0.065   0.000  blk00000a9e (sig000003b5)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa0 (sig000003b6)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa2 (sig000003b7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa4 (sig000003b8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa6 (sig000003b9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aa8 (sig000003a7)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aaa (sig000003a8)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aac (sig000003a9)
+     MUXCY:CI->O           1   0.065   0.000  blk00000aae (sig000003aa)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab0 (sig000003ab)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab2 (sig000003ac)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab4 (sig000003ad)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab6 (sig000003ae)
+     MUXCY:CI->O           1   0.065   0.000  blk00000ab8 (sig000003af)
+     XORCY:CI->O           1   0.844   0.000  blk00000abb (sig000003eb)
+     FD:D                      0.252          blk000001fe
+    ----------------------------------------
+    Total                      5.484ns (4.132ns logic, 1.352ns route)
+                                       (75.3% logic, 24.7% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 5.583ns (frequency: 179.115MHz)
+  Total number of paths / destination ports: 1056 / 57
+-------------------------------------------------------------------------
+Delay:               5.583ns (Levels of Logic = 18)
+  Source:            phase_15 (FF)
+  Destination:       phase_0 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: phase_15 to phase_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              3   0.591   0.611  phase_15 (phase_15)
+     LUT2:I1->O            1   0.643   0.000  Madd_phase_addsub0000_lut<0> (Madd_phase_addsub0000_lut<0>)
+     MUXCY:S->O            1   0.632   0.000  Madd_phase_addsub0000_cy<0> (Madd_phase_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<1> (Madd_phase_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<2> (Madd_phase_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<3> (Madd_phase_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<4> (Madd_phase_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<5> (Madd_phase_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<6> (Madd_phase_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<7> (Madd_phase_addsub0000_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<8> (Madd_phase_addsub0000_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<9> (Madd_phase_addsub0000_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<10> (Madd_phase_addsub0000_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<11> (Madd_phase_addsub0000_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<12> (Madd_phase_addsub0000_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  Madd_phase_addsub0000_cy<13> (Madd_phase_addsub0000_cy<13>)
+     MUXCY:CI->O           0   0.065   0.000  Madd_phase_addsub0000_cy<14> (Madd_phase_addsub0000_cy<14>)
+     XORCY:CI->O           1   0.844   0.452  Madd_phase_addsub0000_xor<15> (phase_addsub0000<15>)
+     LUT3:I2->O            1   0.648   0.000  phase_mux0000<0>1 (phase_mux0000<0>)
+     FDE:D                     0.252          phase_0
+    ----------------------------------------
+    Total                      5.583ns (4.520ns logic, 1.063ns route)
+                                       (81.0% logic, 19.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 14 / 14
+-------------------------------------------------------------------------
+Offset:              1.521ns (Levels of Logic = 1)
+  Source:            freq<13> (PAD)
+  Destination:       step_13 (FF)
+  Destination Clock: clk rising
+
+  Data Path: freq<13> to step_13
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   0.849   0.420  freq_13_IBUF (freq_13_IBUF)
+     FDE:D                     0.252          step_13
+    ----------------------------------------
+    Total                      1.521ns (1.101ns logic, 0.420ns route)
+                                       (72.4% logic, 27.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk14_01'
+  Total number of paths / destination ports: 16 / 16
+-------------------------------------------------------------------------
+Offset:              5.531ns (Levels of Logic = 2)
+  Source:            sig/blk00000117 (FF)
+  Destination:       signal<0> (PAD)
+  Source Clock:      clk14_01 falling
+
+  Data Path: sig/blk00000117 to signal<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              1   0.591   0.420  blk00000117 (y_out<15>)
+     end scope: 'sig'
+     OBUF:I->O                 4.520          signal_0_OBUF (signal<0>)
+    ----------------------------------------
+    Total                      5.531ns (5.111ns logic, 0.420ns route)
+                                       (92.4% logic, 7.6% route)
+
+=========================================================================
+WARNING:Xst:616 - Invalid property "SYN_BLACK_BOX 1": Did not attach to sig.
+WARNING:Xst:616 - Invalid property "SYN_NOPRUNE 1": Did not attach to sig.
+
+
+Total REAL time to Xst completion: 71.00 secs
+Total CPU time to Xst completion: 71.12 secs
+ 
+--> 
+
+Total memory usage is 321012 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    4 (   0 filtered)
+Number of infos    :   10 (   0 filtered)
+
